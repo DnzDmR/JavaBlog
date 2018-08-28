@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/layout}">
+
+<body>
+
+	<div layout:fragment="sidebar">
+		 <!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+						
+								<!-- Search -->
+								<section id="search" class="alt">
+				
+									<div style="width: 50%; margin: auto;">
+										<img style="border-radius: 50%;" class="card-img"
+											src="https://avatars2.githubusercontent.com/u/32747214?s=460&v=4"
+											alt="Card image cap">
+									</div>
+									<div>
+										<h3 class="text-center mt-2">DENİZCAN DEMİR</h3>
+										<p class="text-center">KİŞİSEL WEB SİTESİ</p>
+									</div>
+				
+									<hr />
+									<form method="post" action="#" class="mt-3">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+				
+								</section>
+				
+								<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a href="#">Anasayfa</a></li>
+										<li><a href="#">Hakkımda</a></li>
+										<li><a href="#">Haberler</a></li>
+										<li>
+											<span class="opener">Dersler</span>
+											<ul>
+												<li><a href="#">Java</a></li>
+												<li><a href="#">JSF</a></li>
+												<li><a href="#">Spring Boot</a></li>
+												<li><a href="#">Android</a></li>
+												
+											</ul>
+										</li>
+										<li><a href="#">İletişim</a></li>
+					 
+									</ul>
+								</nav>
+ 
+						</div>
+					</div>
+	</div>
+
+</body>
+</html>
