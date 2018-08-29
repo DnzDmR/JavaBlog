@@ -91,5 +91,13 @@ public class UsersController {
 
 		return "redirect:/admin/users/list";
 	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String getUsersDelete(@PathVariable("id") Integer id) {
+		
+		usersRepository.deleteById(id); 
+	 
+		return "redirect:/admin/users/list";
+	}
 
 }
