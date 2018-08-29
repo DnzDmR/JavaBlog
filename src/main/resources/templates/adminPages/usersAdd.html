@@ -28,6 +28,12 @@
 				<input type="text" name="password" id="password" class="form-control col-md-6" th:field="${user.password}" required="required" placeholder="Password">
 				<p class="error text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 			</div>
+			 <div class="form-group">
+				<select th:field="${user.enabled}" class="form-control col-md-6">
+					<option value="1" th:text="Aktif"></option>
+					<option value="0" th:text="Pasif"></option>
+				</select>
+			</div>
 			<div class="form-group">
 				<input type="hidden" th:value="${_csrf.token}" th:name="${_csrf.parameterName}" /> 
 				<input type="submit" name="submit" class="special col-md-6"	value="Register">

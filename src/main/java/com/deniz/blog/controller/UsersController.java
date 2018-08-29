@@ -52,8 +52,7 @@ public class UsersController {
 		Collection<Authorities> list = new ArrayList<Authorities>();
 		list.add(authorities);
 
-		user.setEnabled(true);
-		user.setAuthorities(list);
+ 		user.setAuthorities(list);
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		usersRepository.save(user);
