@@ -38,9 +38,9 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a href="#">Anasayfa</a></li>
-										<li><a href="#">Hakkımda</a></li>
-										<li><a href="#">Haberler</a></li>
+										<li><a th:href="@{/}">Anasayfa</a></li>
+										<li><a th:href="@{/about}">Hakkımda</a></li>
+										<li><a th:href="@{/news}">Haberler</a></li>
 										<li>
 											<span class="opener">Dersler</span>
 											<ul>
@@ -51,7 +51,7 @@
 												
 											</ul>
 										</li>
-										<li><a href="#">İletişim</a></li>
+										<li><a th:href="@{/contact}">İletişim</a></li>
 					 
 									</ul>
 								</nav>
