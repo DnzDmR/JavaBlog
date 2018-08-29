@@ -58,18 +58,18 @@ public class UsersController {
 
 		usersRepository.save(user);
 
-		return "redirect:/admin/users/edit";
+		return "redirect:/admin/users/list";
 	}
 	
 	
-	@RequestMapping(value="/edit",method = RequestMethod.GET)
+	@RequestMapping(value="/list",method = RequestMethod.GET)
 	public String getUsersEditPage(Model model) {
 		
 		Iterable<Users> users =  usersRepository.findAll();
 		
 		model.addAttribute("users", users);
 		
-		return "adminPages/usersEdit";
+		return "adminPages/usersList";
 	}
 
 }
