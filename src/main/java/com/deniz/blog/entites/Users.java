@@ -20,10 +20,14 @@ public class Users {
 
 	@Column(unique = true)
 	private String username;
-	
 	private String password;
-
 	private boolean enabled;
+
+	private String firstName;
+	private String lastName;
+
+	@Column(unique = true)
+	private String email;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private Collection<Authorities> authorities = new ArrayList<Authorities>();
@@ -66,6 +70,30 @@ public class Users {
 
 	public void setAuthorities(Collection<Authorities> authorities) {
 		this.authorities = authorities;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 }
