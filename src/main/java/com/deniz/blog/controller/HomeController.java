@@ -26,6 +26,12 @@ public class HomeController {
 	public String getAboutPage(Model model) {
 		
 		return "pages/about";
-	}	
+	}
+	
+	@RequestMapping(value="/news", method= RequestMethod.GET)
+	public String getNewsPage(Model model) {
+		
+		return "pages/news";
+	}
 
 }
