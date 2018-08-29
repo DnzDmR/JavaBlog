@@ -13,25 +13,25 @@ public class HomeController {
 	@RequestMapping(value= {"","/"}, method= RequestMethod.GET)
 	public String getHomePage(Model model) {
 		
-		return "pages/home";
+		return "blogPages/home";
 	}
 	
 	@RequestMapping(value="/contact", method= RequestMethod.GET)
 	public String getContactPage(Model model) {
 		
-		return "pages/contact";
+		return "blogPages/contact";
 	}
 	
 	@RequestMapping(value="/about", method= RequestMethod.GET)
 	public String getAboutPage(Model model) {
 		
-		return "pages/about";
+		return "blogPages/about";
 	}
 	
 	@RequestMapping(value="/news", method= RequestMethod.GET)
 	public String getNewsPage(Model model) {
 		
-		return "pages/news";
+		return "blogPages/news";
 	}
 
 }

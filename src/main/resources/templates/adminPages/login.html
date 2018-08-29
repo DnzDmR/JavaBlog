@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{adminLayout/layout}">
+<th:block layout:fragment="title">Login</th:block>
+<th:block layout:fragment="content">
+
+	<section>
+		<form id="login-form" class="form" action="login" method="post">
+			<input type="text" class="mt-3" id="username" name="username" th:placeholder="username" required="required" /> 
+			<input type="password" class="mt-3" id="password" name="password" th:placeholder="password" required="required" /> 
+			<input type="hidden" th:value="${_csrf.token}" th:name="${_csrf.parameterName}" /> 
+  			<input type="submit" name="submit" class="special mt-2" value="Login ">
+  			
+			<div th:if="${param.loginFailed}" class="alert alert-danger mt-3">Giriş Başarısız !</div>
+			<div th:if="${param.logout}" class="alert alert-success mt-3">Çıkış Başarılı !</div>
+		</form>
+	</section>
+
+</th:block>
+</html>

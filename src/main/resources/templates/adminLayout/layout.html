@@ -27,7 +27,7 @@
 			<div class="inner">
 
 				<!-- Header -->
-				<div layout:insert="~{layout/header :: header}"></div>
+				<div layout:insert="~{adminLayout/header :: header}"></div>
 
 				<!-- Section -->
 				<th:block layout:fragment="content"></th:block>
@@ -36,7 +36,7 @@
 		</div>
 
 		<!-- Sidebar -->
-		<div layout:insert="~{layout/sidebar :: sidebar}"></div>
+		<div layout:insert="~{adminLayout/sidebar :: sidebar}"></div>
 
 	</div>
 
@@ -49,6 +49,6 @@
 	<script src="/js/util.js"></script>
 	<!--[if lte IE 8]><script src="/js/ie/respond.min.js"></script><![endif]-->
 	<script src="/js/main.js"></script>
-<th:block layout:insert="~{layout/header :: script}"> </th:block>
+<th:block layout:insert="~{adminLayout/header :: script}"> </th:block>
 </body>
 </html>

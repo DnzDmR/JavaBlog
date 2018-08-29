@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{adminLayout/layout}">
+
+<body>
+
+	<div layout:fragment="sidebar">
+		 <!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+						
+								<!-- Search -->
+								<section id="search" class="alt">
+				
+									<div style="width: 50%; margin: auto;">
+										<img style="border-radius: 50%;" class="card-img"
+											src="https://avatars2.githubusercontent.com/u/32747214?s=460&v=4"
+											alt="Card image cap">
+									</div>
+									<div>
+										<h3 class="text-center mt-2">DENİZCAN DEMİR</h3>
+										<p class="text-center text-uppercase" th:text="#{general.label.siteTitle}"></p>
+									</div>
+ 		
+								</section>
+								
+							 	<div class="text-center mt-2" sec:authorize="isAuthenticated()">
+									<form  th:action="${#httpServletRequest.getContextPath()+'/logout'}" method="post">
+										<input type="hidden" th:value="${_csrf.token}"	th:name="${_csrf.parameterName}" />
+										<input type="submit" class="special" value="Logout" />
+									</form>
+								</div>
+ 																
+								<!-- Menu -->
+								<nav id="menu" sec:authorize="isAuthenticated()">
+ 
+									<header class="major">
+										<h2>Menu</h2>
+									</header>
+									<ul>
+										<li><a th:href="@{/}" th:text="#{genaral.label.homePage}"></a></li>
+ 
+										<li>
+											<span class="opener" th:text="News"></span>
+											<ul>
+												<li><a href="#">Create</a></li>
+												<li><a href="#">Edit</a></li>
+											</ul>
+										</li>
+										<li>
+											<span class="opener" th:text="Lessons"></span>
+											<ul>
+												<li><a href="#">Create</a></li>
+												<li><a href="#">Edit</a></li>
+											</ul>
+										</li>
+										<li><a th:href="@{/contact}" th:text="Messages"></a></li>
+					 
+									</ul>
+								</nav>
+ 
+						</div>
+					</div>
+	</div>
+
+</body>
+</html>
