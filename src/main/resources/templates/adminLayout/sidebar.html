@@ -42,7 +42,13 @@
 									</header>
 									<ul>
 										<li><a th:href="@{/}" th:text="#{genaral.label.homePage}"></a></li>
- 
+ 										<li>
+											<span class="opener" th:text="Users"></span>
+											<ul>
+												<li><a th:href="@{/admin/users/add}">Add</a></li>
+												<li><a href="#">Edit</a></li>
+											</ul>
+										</li>
 										<li>
 											<span class="opener" th:text="News"></span>
 											<ul>

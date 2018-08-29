@@ -10,6 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Size;
+
 
 @Entity
 public class Users {
@@ -20,6 +23,8 @@ public class Users {
 
 	@Column(unique = true)
 	private String username;
+	
+	@Size(min=6, message="en az 6 karater olmalı") 
 	private String password;
 	private boolean enabled;
 
@@ -27,6 +32,7 @@ public class Users {
 	private String lastName;
 
 	@Column(unique = true)
+	@Email(message="geçerli bir mail giriniz")
 	private String email;
 
 	@OneToMany(cascade = CascadeType.ALL)
