@@ -20,6 +20,12 @@ public class HomeController {
 	public String getContactPage(Model model) {
 		
 		return "pages/contact";
+	}
+	
+	@RequestMapping(value="/about", method= RequestMethod.GET)
+	public String getAboutPage(Model model) {
+		
+		return "pages/about";
 	}	
 
 }
