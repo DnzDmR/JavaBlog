@@ -2,6 +2,7 @@ package com.deniz.blog.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -57,6 +58,17 @@ public class UsersController {
 
 		usersRepository.save(user);
 
+		return "redirect:/admin/users/edit";
+	}
+	
+	
+	@RequestMapping(value="/edit",method = RequestMethod.GET)
+	public String getUsersEditPage(Model model) {
+		
+		Iterable<Users> users =  usersRepository.findAll();
+		
+		model.addAttribute("users", users);
+		
 		return "adminPages/usersEdit";
 	}
 
