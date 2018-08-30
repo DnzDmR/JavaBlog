@@ -18,6 +18,7 @@ public class News {
 	private String title;
 
 	private String content;
+	private String description;
 
 	@OneToOne
 	private Users author;
@@ -62,6 +63,14 @@ public class News {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
