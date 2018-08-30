@@ -27,7 +27,7 @@
 			<textarea th:field="${news.content}"></textarea>
 		 <input  type="submit" value="Save" class="btn btn-danger  mt-3 mb-3">
 		 <input  type="reset" value="Clear" class="btn btn-warning  mt-3 mb-3 ">
-		 <a class="pull-right btn btn-success mt-3 mb-3"> Back</a> 
+		 <a  th:href="@{/admin/news/list}" class="pull-right btn btn-success mt-3 mb-3"> Back</a> 
 	 </form>
 	</div>
 	

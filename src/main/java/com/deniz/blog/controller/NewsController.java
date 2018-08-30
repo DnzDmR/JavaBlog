@@ -2,6 +2,7 @@ package com.deniz.blog.controller;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -63,6 +64,22 @@ public class NewsController {
 		return "redirect:/admin/news/list";
 	}
 	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String getNewsEditPage(@PathVariable("id") Integer id ,Model model) {
+		
+		Optional<News> news = newsRepository.findById(id);
+		model.addAttribute("news", news.get());
+		
+		return "adminPages/newsEdit";
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
+	public String postNewsEditPage(@ModelAttribute("news") News news) {
+		 
+		newsRepository.save(news);
+		
+		return "redirect:/admin/news/list";
+	}
 	
 
 }
