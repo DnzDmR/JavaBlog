@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{adminLayout/layout}">
+<th:block layout:fragment="title">News List</th:block>
+<th:block layout:fragment="content">
+
+ 
+	<div class="list-group mt-3" th:each="contact : ${contacts}">
+		<div
+			class="list-group-item list-group-item-action flex-column align-items-start  ">
+			<div class="d-flex w-100 justify-content-between mb-2">
+				<h5 class="mb-1" th:text="${contact.name +' (' +contact.email} +')'"></h5>
+				<small th:text="${contact.date}"></small>
+			</div>
+			<p class="mb-2" th:text="${contact.message}"></p>
+			<a th:href="@{'/admin/contacts/delete/'+${contact.id}}" onclick="return confirm('Are you sure ?')"
+				style="border: none" class="pull-right"><i class="fas fa-trash"></i></a>
+		</div>
+	</div>
+
+
+
+</th:block>
+</html>

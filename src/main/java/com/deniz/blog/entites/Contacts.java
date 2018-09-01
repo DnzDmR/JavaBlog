@@ -2,6 +2,7 @@ package com.deniz.blog.entites;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +17,7 @@ public class Contacts {
 
 	private String name;
 	private String email;
+	@Column(length=1000)
 	private String message;
 	private Date date;
 
