@@ -7,16 +7,16 @@
 <th:block layout:fragment="title">Contact</th:block>
 <th:block layout:fragment="content">
 
-<form method="post" action="#" class="mt-3">
+<form method="post" th:action="@{/contact}" class="mt-3" th:object="${contact}">
 	<div class="row uniform">
 		<div class="col-md-7 col-xs-12">
-			<input type="text" name="demo-name" id="demo-name" value="" th:placeholder="#{general.label.name}" />
+			<input type="text" th:field="${contact.name}"   th:placeholder="#{general.label.name}" />
 		</div>
 		<div class="col-md-7 col-xs-12">
-			<input type="email" name="demo-email" id="demo-email" value="" th:placeholder="#{general.label.email}" />
+			<input type="email" th:field="${contact.email}"   th:placeholder="#{general.label.email}" />
 		</div>
 		<div class="col-md-12">
-			<textarea name="demo-message" id="demo-message" th:placeholder="#{general.label.enterYourMessage}" rows="6"></textarea>
+			<textarea name="demo-message" th:field="${contact.message}" th:placeholder="#{general.label.enterYourMessage}" rows="6"></textarea>
 		</div>
 		<div class="col-md-12">
 			<ul class="actions">
@@ -24,8 +24,8 @@
 				<li><input type="reset" th:value="#{general.label.clear}" /></li>
 			</ul>
 		</div>
-	</div>
+ 	</div>
 </form>
-
+<div th:if="${message}" th:text="${message}" class="alert alert-warning col-md-12">d</div>
 </th:block>
 </html>
