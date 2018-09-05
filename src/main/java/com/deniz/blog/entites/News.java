@@ -2,11 +2,14 @@ package com.deniz.blog.entites;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+
 
 @Entity
 public class News {
@@ -22,7 +25,11 @@ public class News {
 
 	@OneToOne
 	private Users author;
-
+	
+	@Lob
+	@Column(nullable=false, columnDefinition="mediumblob")
+	byte[] image;
+ 
 	private Date createDate;
 
 	public Integer getId() {
@@ -72,5 +79,15 @@ public class News {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public byte[] getImage() {
+		return image;
+	}
+
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+
+ 
 
 }
