@@ -21,8 +21,12 @@ public class Lessons {
 	@Id
 	private Integer id;
 
+	private String title;
+
 	@Type(type = "text")
 	private String content;
+	@Type(type = "text")
+	private String description;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Categories category;
@@ -82,6 +86,22 @@ public class Lessons {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }
