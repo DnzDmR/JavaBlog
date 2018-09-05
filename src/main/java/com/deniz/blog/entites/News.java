@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Type;
 
 @Entity
 public class News {
@@ -20,18 +21,18 @@ public class News {
 
 	private String title;
 
-	@Column(length=10000)
+	@Type(type = "text")
 	private String content;
-	@Column(length=1000)
+	@Type(type = "text")
 	private String description;
 
 	@OneToOne
 	private Users author;
-	
+
 	@Lob
-	@Column(nullable=false, columnDefinition="mediumblob")
+	@Column(nullable = false, columnDefinition = "mediumblob")
 	byte[] image;
- 
+
 	private Date createDate;
 
 	public Integer getId() {
@@ -89,7 +90,5 @@ public class News {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-
- 
 
 }

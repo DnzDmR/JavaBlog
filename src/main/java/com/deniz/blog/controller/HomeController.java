@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.deniz.blog.entites.About;
 import com.deniz.blog.entites.Contacts;
 import com.deniz.blog.repository.AboutRepository;
 import com.deniz.blog.repository.ContactsRepository;
@@ -26,7 +27,7 @@ public class HomeController {
 
 	@Autowired
 	ContactsRepository contactRepository;
-	
+
 	@Autowired
 	AboutRepository aboutRepository;
 
@@ -46,8 +47,12 @@ public class HomeController {
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String getAboutPage(Model model) {
 
-		model.addAttribute("about", aboutRepository.getAboutList().get(0));
-		
+		if (aboutRepository.getAboutList().size() > 0) {
+			model.addAttribute("about", aboutRepository.getAboutList().get(0));
+		} else {
+			model.addAttribute("about", new About());
+		}
+
 		return "blogPages/about";
 	}
 
@@ -62,7 +67,6 @@ public class HomeController {
 	@RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
 	public String getNewsPage(Model model, @PathVariable Integer id) {
 
-		
 		model.addAttribute("news", newsRepository.findById(id).get());
 
 		return "blogPages/newsContent";
