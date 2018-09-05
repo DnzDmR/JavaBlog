@@ -14,13 +14,13 @@ import com.deniz.blog.repository.CategoriesRepository;
 
 @Controller
 @RequestMapping("/admin/lessons")
-public class CategoryController {
+public class CategoriesController {
 
 	@Autowired
 	CategoriesRepository categoriesRepository;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String getLessonAddPage(Model model) {
+	public String getCategoriesAddPage(Model model) {
 
 		model.addAttribute("category", new Categories());
 		model.addAttribute("categories", categoriesRepository.findAll());
@@ -28,14 +28,14 @@ public class CategoryController {
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String getLessonEditPage(Model model) {
+	public String getCategoriesEditPage(Model model) {
 
  		model.addAttribute("categories", categoriesRepository.findAll());
 		return "adminPages/lessonsEdit";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postLessonAddPage(@ModelAttribute("lesson") Categories categories, RedirectAttributes redirectAttributes) {
+	public String postCategoriesAddPage(@ModelAttribute("lesson") Categories categories, RedirectAttributes redirectAttributes) {
 
 		String url = categories.getCategoryName().toLowerCase().replace(" ", "");
 		categories.setCategoryUrl(url);
@@ -47,7 +47,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
-	public String getLessonDeletePage(@PathVariable("id") Integer id) {
+	public String getCategoriesDeletePage(@PathVariable("id") Integer id) {
 
 		categoriesRepository.deleteById(id);
 
