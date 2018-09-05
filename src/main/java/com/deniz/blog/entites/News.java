@@ -20,7 +20,9 @@ public class News {
 
 	private String title;
 
+	@Column(length=10000)
 	private String content;
+	@Column(length=1000)
 	private String description;
 
 	@OneToOne

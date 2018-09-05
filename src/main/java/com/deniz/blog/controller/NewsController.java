@@ -77,8 +77,12 @@ public class NewsController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String postNewsEditPage(@ModelAttribute("news") News news) {
+	public String postNewsEditPage(@ModelAttribute("news") News news, @RequestParam("images") MultipartFile file) throws IOException {
 
+		if(file.getBytes().length>0) {
+			news.setImage(file.getBytes());
+		}
+		
 		newsRepository.save(news);
 
 		return "redirect:/admin/news/list";

@@ -20,7 +20,7 @@
  
 	<div class="container">
 	
-	<form th:action="@{/admin/news/add}" method="post" th:object="${news}"  enctype="multipart/form-data" >
+	<form th:action="@{/admin/news/add}" method="post" th:object="${news}" enctype="multipart/form-data" >
 		 <input type="text" th:field="${news.title}" class="form-control mt-3 mb-3 " placeholder="News Title">
 		 <input type="text" th:field="${news.description}" class="form-control mt-3 mb-3 " placeholder="Description">
 		 <input type="file" name="images" class=" mb-2 btn btn-light" required="required" accept="image/x-png,image/gif,image/jpeg"> 
