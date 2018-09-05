@@ -13,7 +13,7 @@ import com.deniz.blog.entites.Categories;
 import com.deniz.blog.repository.CategoriesRepository;
 
 @Controller
-@RequestMapping("/admin/lessons")
+@RequestMapping("/admin/categories")
 public class CategoriesController {
 
 	@Autowired
@@ -24,26 +24,26 @@ public class CategoriesController {
 
 		model.addAttribute("category", new Categories());
 		model.addAttribute("categories", categoriesRepository.findAll());
-		return "adminPages/lessonsAdd";
+		return "adminPages/categoriesAdd";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String getCategoriesEditPage(Model model) {
 
  		model.addAttribute("categories", categoriesRepository.findAll());
-		return "adminPages/lessonsEdit";
+		return "adminPages/categoriesEdit";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postCategoriesAddPage(@ModelAttribute("lesson") Categories categories, RedirectAttributes redirectAttributes) {
+	public String postCategoriesAddPage(@ModelAttribute("category") Categories category, RedirectAttributes redirectAttributes) {
 
-		String url = categories.getCategoryName().toLowerCase().replace(" ", "");
-		categories.setCategoryUrl(url);
-		categoriesRepository.save(categories);
+		String url = category.getCategoryName().toLowerCase().replace(" ", "");
+		category.setCategoryUrl(url);
+		categoriesRepository.save(category);
 
 		redirectAttributes.addFlashAttribute("message", "Başarı ile eklendi");
 
-		return "redirect:/admin/lessons/add";
+		return "redirect:/admin/categories/add";
 	}
 
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class CategoriesController {
 
 		categoriesRepository.deleteById(id);
 
-		return "redirect:/admin/lessons/edit";
+		return "redirect:/admin/categories/edit";
 	}
 
 }

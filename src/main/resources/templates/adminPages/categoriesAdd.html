@@ -9,7 +9,7 @@
 
  
 <div class="row">
-	<form method="post" th:object="${category}" th:action="@{/admin/lessons/add}" >
+	<form method="post" th:object="${category}" th:action="@{/admin/categories/add}" >
 		<input type="text" th:field="${category.categoryName}" class="form-control mt-2" placeholder="Name" required="required">
 		<input type="submit" class="form-control mt-2 special" value="Save">
 	</form>
