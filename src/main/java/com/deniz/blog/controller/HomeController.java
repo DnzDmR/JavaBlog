@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.deniz.blog.entites.Contacts;
+import com.deniz.blog.repository.AboutRepository;
 import com.deniz.blog.repository.ContactsRepository;
 import com.deniz.blog.repository.NewsRepository;
 
@@ -25,6 +26,9 @@ public class HomeController {
 
 	@Autowired
 	ContactsRepository contactRepository;
+	
+	@Autowired
+	AboutRepository aboutRepository;
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
@@ -42,6 +46,8 @@ public class HomeController {
 	@RequestMapping(value = "/about", method = RequestMethod.GET)
 	public String getAboutPage(Model model) {
 
+		model.addAttribute("about", aboutRepository.getAboutList().get(0));
+		
 		return "blogPages/about";
 	}
 

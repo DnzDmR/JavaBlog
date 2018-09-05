@@ -7,7 +7,14 @@
 <th:block layout:fragment="title" th:text="#{general.label.aboutMe}"></th:block>
 <th:block layout:fragment="content">
 
+<p id="metin" class="mt-3"></p>
  
+ <script th:inline="javascript">
+var message = [[${about.content}]]
+
+document.getElementById("metin").innerHTML=message;
+
+</script>
 
 </th:block>
 </html>
