@@ -3,9 +3,9 @@ package com.deniz.blog.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.deniz.blog.entites.Lessons;
+import com.deniz.blog.entites.Categories;
 
 @Repository
-public interface LessonsRepository extends CrudRepository<Lessons, Integer> {
+public interface CategoriesRepository extends CrudRepository<Categories, Integer> {
 
 }

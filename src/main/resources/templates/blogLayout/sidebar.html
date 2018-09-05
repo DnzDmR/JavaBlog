@@ -44,8 +44,8 @@
 										<li>
 											<span class="opener" th:text="#{general.label.lessons}"></span>
 											<ul>
-												<li th:each="lesson : ${lessons}">
-													<a th:href="@{'lessons/'+${lesson.lessonsUrl}}" th:text="${lesson.lessonsName}"></a>
+												<li th:each="category : ${categories}">
+													<a th:href="@{'lessons/'+${category.categoryUrl}}" th:text="${category.categoryName}"></a>
 												</li>
 												 
 											</ul>

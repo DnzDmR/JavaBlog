@@ -17,11 +17,11 @@
 		</tr>	
 	</thead>
 	<tbody>
-		<tr th:each="lesson : ${lessons}">
-			<td th:text="${lesson.lessonsName}"></td>
+		<tr th:each="category : ${categories}">
+			<td th:text="${category.categoryName}"></td>
 			<td>
-				<a th:href="@{'/admin/lessons/edit/'+ ${lesson.id}}" style="border:none" class="mr-1"><i class="fas fa-pencil-alt"></i></a>
-				<a th:href="@{'/admin/lessons/delete/'+ ${lesson.id}}" style="border:none" class="ml-1" onclick="return confirm('Are you sure !');"><i class="fas fa-trash"></i></a>
+				<a th:href="@{'/admin/lessons/edit/'+ ${category.id}}" style="border:none" class="mr-1"><i class="fas fa-pencil-alt"></i></a>
+				<a th:href="@{'/admin/lessons/delete/'+ ${category.id}}" style="border:none" class="ml-1" onclick="return confirm('Are you sure !');"><i class="fas fa-trash"></i></a>
 			</td>
 		</tr>
 	</tbody>

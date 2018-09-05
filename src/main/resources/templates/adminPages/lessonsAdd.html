@@ -9,11 +9,11 @@
 
  
 <div class="row">
-	<form method="post" th:object="${lesson}" th:action="@{/admin/lessons/add}" >
-		<input type="text" th:field="${lesson.lessonsName}" class="form-control mt-2" placeholder="Name" required="required">
+	<form method="post" th:object="${category}" th:action="@{/admin/lessons/add}" >
+		<input type="text" th:field="${category.categoryName}" class="form-control mt-2" placeholder="Name" required="required">
 		<input type="submit" class="form-control mt-2 special" value="Save">
 	</form>
-	<div th:if="${message}" th:text="${message}" class="alert alert-success col-md-12">d</div>
+	<div th:if="${message}" th:text="${message}" class="alert alert-success col-md-12"></div>
 </div>
  
  

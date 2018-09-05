@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.deniz.blog.entites.About;
+import com.deniz.blog.entites.Categories;
 import com.deniz.blog.entites.Contacts;
-import com.deniz.blog.entites.Lessons;
 import com.deniz.blog.repository.AboutRepository;
+import com.deniz.blog.repository.CategoriesRepository;
 import com.deniz.blog.repository.ContactsRepository;
-import com.deniz.blog.repository.LessonsRepository;
 import com.deniz.blog.repository.NewsRepository;
 
 @Controller
@@ -34,7 +34,7 @@ public class HomeController {
 	AboutRepository aboutRepository;
 	
 	@Autowired
-	LessonsRepository lessonsRepository;
+	CategoriesRepository categoriesRepository;
 
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
@@ -90,9 +90,9 @@ public class HomeController {
 		return "redirect:/contact";
 	}
 	
-	@ModelAttribute("lessons")
-	public Iterable<Lessons> getLessonList(){
-		return lessonsRepository.findAll();
+	@ModelAttribute("categories")
+	public Iterable<Categories> getLessonList(){
+		return categoriesRepository.findAll();
 	}
 
 }

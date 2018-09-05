@@ -9,37 +9,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.deniz.blog.entites.Lessons;
-import com.deniz.blog.repository.LessonsRepository;
+import com.deniz.blog.entites.Categories;
+import com.deniz.blog.repository.CategoriesRepository;
 
 @Controller
 @RequestMapping("/admin/lessons")
-public class LessonsController {
+public class CategoryController {
 
 	@Autowired
-	LessonsRepository lessonsRepository;
+	CategoriesRepository categoriesRepository;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getLessonAddPage(Model model) {
 
-		model.addAttribute("lesson", new Lessons());
-		model.addAttribute("lessons", lessonsRepository.findAll());
+		model.addAttribute("category", new Categories());
+		model.addAttribute("categories", categoriesRepository.findAll());
 		return "adminPages/lessonsAdd";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String getLessonEditPage(Model model) {
 
- 		model.addAttribute("lessons", lessonsRepository.findAll());
+ 		model.addAttribute("categories", categoriesRepository.findAll());
 		return "adminPages/lessonsEdit";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postLessonAddPage(@ModelAttribute("lesson") Lessons lesson, RedirectAttributes redirectAttributes) {
+	public String postLessonAddPage(@ModelAttribute("lesson") Categories categories, RedirectAttributes redirectAttributes) {
 
-		String url = lesson.getLessonsName().toLowerCase().replace(" ", "");
-		lesson.setLessonsUrl(url);
-		lessonsRepository.save(lesson);
+		String url = categories.getCategoryName().toLowerCase().replace(" ", "");
+		categories.setCategoryUrl(url);
+		categoriesRepository.save(categories);
 
 		redirectAttributes.addFlashAttribute("message", "Başarı ile eklendi");
 
@@ -49,7 +49,7 @@ public class LessonsController {
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String getLessonDeletePage(@PathVariable("id") Integer id) {
 
-		lessonsRepository.deleteById(id);
+		categoriesRepository.deleteById(id);
 
 		return "redirect:/admin/lessons/edit";
 	}
