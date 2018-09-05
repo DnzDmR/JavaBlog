@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{adminLayout/layout}">
+<th:block layout:fragment="title">Add Lesson</th:block>
+<th:block layout:fragment="content">
+
+ 
+<div class="row">
+	<form method="post" th:object="${lesson}" th:action="@{/admin/lessons/add}" >
+		<input type="text" th:field="${lesson.lessonsName}" class="form-control mt-2" placeholder="Name" required="required">
+		<input type="submit" class="form-control mt-2 special" value="Save">
+	</form>
+	<div th:if="${message}" th:text="${message}" class="alert alert-success col-md-12">d</div>
+</div>
+ 
+ 
+ </th:block>
+</html>

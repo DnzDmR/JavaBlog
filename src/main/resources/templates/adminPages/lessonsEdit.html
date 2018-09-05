@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{adminLayout/layout}">
+<th:block layout:fragment="title">Add Lesson</th:block>
+<th:block layout:fragment="content">
+
+ 
+ 
+ <table class="mt-2">
+	<thead>
+		<tr>
+			<th>Lesson Name</th>
+			<th>Action</th>
+		</tr>	
+	</thead>
+	<tbody>
+		<tr th:each="lesson : ${lessons}">
+			<td th:text="${lesson.lessonsName}"></td>
+			<td>
+				<a th:href="@{'/admin/lessons/edit/'+ ${lesson.id}}" style="border:none" class="mr-1"><i class="fas fa-pencil-alt"></i></a>
+				<a th:href="@{'/admin/lessons/delete/'+ ${lesson.id}}" style="border:none" class="ml-1" onclick="return confirm('Are you sure !');"><i class="fas fa-trash"></i></a>
+			</td>
+		</tr>
+	</tbody>
+ 
+ </table>
+ 
+ 
+ </th:block>
+</html>

@@ -44,11 +44,10 @@
 										<li>
 											<span class="opener" th:text="#{general.label.lessons}"></span>
 											<ul>
-												<li><a href="#">Java</a></li>
-												<li><a href="#">JSF</a></li>
-												<li><a href="#">Spring Boot</a></li>
-												<li><a href="#">Android</a></li>
-												
+												<li th:each="lesson : ${lessons}">
+													<a th:href="@{'lessons/'+${lesson.lessonsUrl}}" th:text="${lesson.lessonsName}"></a>
+												</li>
+												 
 											</ul>
 										</li>
 										<li><a th:href="@{/contact}" th:text="#{general.label.contact}"></a></li>

@@ -14,8 +14,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.deniz.blog.entites.About;
 import com.deniz.blog.entites.Contacts;
+import com.deniz.blog.entites.Lessons;
 import com.deniz.blog.repository.AboutRepository;
 import com.deniz.blog.repository.ContactsRepository;
+import com.deniz.blog.repository.LessonsRepository;
 import com.deniz.blog.repository.NewsRepository;
 
 @Controller
@@ -30,6 +32,10 @@ public class HomeController {
 
 	@Autowired
 	AboutRepository aboutRepository;
+	
+	@Autowired
+	LessonsRepository lessonsRepository;
+
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
@@ -82,6 +88,11 @@ public class HomeController {
 				"Mesajınız başarıyla gönderilmiştir. Mail aracılığıyla dönüş yapılacaktır.");
 
 		return "redirect:/contact";
+	}
+	
+	@ModelAttribute("lessons")
+	public Iterable<Lessons> getLessonList(){
+		return lessonsRepository.findAll();
 	}
 
 }

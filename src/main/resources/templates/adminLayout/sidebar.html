@@ -60,8 +60,9 @@
 										<li>
 											<span class="opener" th:text="Lessons"></span>
 											<ul>
-												<li><a href="#">Create</a></li>
-												<li><a href="#">Edit</a></li>
+												<li><a th:href="@{/admin/lessons/new}">New</a></li>
+												<li><a th:href="@{/admin/lessons/add}">Add</a></li>
+												<li><a th:href="@{/admin/lessons/edit}">Edit</a></li>
 											</ul>
 										</li>
 										<li><a th:href="@{/admin/contacts/list}" th:text="Messages"></a></li>
