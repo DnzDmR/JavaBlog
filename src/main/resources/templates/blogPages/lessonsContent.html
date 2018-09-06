@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{blogLayout/layout}">
+<th:block layout:fragment="title" th:text="#{general.label.news}"></th:block>
+<th:block layout:fragment="content">
+	<section>
+		<header class="main">
+			<h1 th:text="${lesson.title}">Generic</h1>
+		</header>
+		<p th:text="${lesson.description}"></p>
+		<span class="image main"><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lesson.image)}}"/></span>
+		
+		<p id="metin"></p>
+		
+	</section>
+
+<script th:inline="javascript">
+var message = [[${lesson.content}]]
+
+document.getElementById("metin").innerHTML=message;
+
+</script>
+
+</th:block>
+</html>

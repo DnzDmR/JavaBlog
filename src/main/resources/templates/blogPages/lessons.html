@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{blogLayout/layout}">
+<th:block layout:fragment="title" th:text="#{general.label.news}"></th:block>
+<th:block layout:fragment="content">
+
+<!-- Section -->
+<section>
+	<div class="posts">
+		<article th:each="lesson : ${lessons}">
+			<a th:href="@{'/lessons/'+${lesson.category.categoryUrl}+'/'+${lesson.id}}" class="image"> <img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lesson.image)}}"/></a>
+			<h3 th:text="${lesson.title}"></h3>
+			<p th:text="${lesson.description}"></p>
+			<ul class="actions">
+				<li><a th:href="@{'/lessons/'+${lesson.category.categoryUrl}+'/'+${lesson.id}}" class="button">More</a></li>
+			</ul>
+		</article>
+	</div>
+</section>
+
+</th:block>
+</html>

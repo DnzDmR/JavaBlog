@@ -18,6 +18,7 @@ import com.deniz.blog.entites.Contacts;
 import com.deniz.blog.repository.AboutRepository;
 import com.deniz.blog.repository.CategoriesRepository;
 import com.deniz.blog.repository.ContactsRepository;
+import com.deniz.blog.repository.LessonsRepository;
 import com.deniz.blog.repository.NewsRepository;
 
 @Controller
@@ -35,6 +36,9 @@ public class HomeController {
 	
 	@Autowired
 	CategoriesRepository categoriesRepository;
+	
+	@Autowired
+	LessonsRepository lessonRepository;
 
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
@@ -93,6 +97,27 @@ public class HomeController {
 	@ModelAttribute("categories")
 	public Iterable<Categories> getLessonList(){
 		return categoriesRepository.findAll();
+	}
+	
+	@RequestMapping(value = "/lessons/{lesson}", method = RequestMethod.GET)
+	public String getLessonContentPage(@PathVariable("lesson") String lesson , Model model) {
+
+		Categories a = categoriesRepository.getCategoryByCategoryName(lesson).get(0);
+ 
+		model.addAttribute("lessons", lessonRepository.getLessonsByCategory(a));
+		
+		
+		return "blogPages/lessons";
+	}
+	
+	@RequestMapping(value = "/lessons/{lesson}/{id}", method = RequestMethod.GET)
+	public String getLessonContentPage(@PathVariable("lesson") String lesson ,@PathVariable("id") Integer id, Model model) {
+
+		System.out.println("##"+lessonRepository.findById(id).get().getTitle());
+		model.addAttribute("lesson", lessonRepository.findById(id).get());
+		
+		
+		return "blogPages/lessonsContent";
 	}
 
 }

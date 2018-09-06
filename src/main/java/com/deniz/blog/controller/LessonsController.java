@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.deniz.blog.entites.Categories;
 import com.deniz.blog.entites.Lessons;
-import com.deniz.blog.entites.News;
+import com.deniz.blog.repository.CategoriesRepository;
 import com.deniz.blog.repository.LessonsRepository;
 import com.deniz.blog.repository.UsersRepository;
 
@@ -26,27 +28,31 @@ public class LessonsController {
 
 	@Autowired
 	LessonsRepository lessonsRepository;
-	
+
 	@Autowired
 	UsersRepository usersRepository;
+
+	@Autowired
+	CategoriesRepository categoriesRepository;
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String getCategoriesAddPage(Model model) {
 
 		model.addAttribute("lesson", new Lessons());
- 		
+
 		return "adminPages/lessonsAdd";
 	}
-	
+
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String getLessonsEditPage(Model model) {
 
- 		model.addAttribute("lessons", lessonsRepository.findAll());
+		model.addAttribute("lessons", lessonsRepository.findAll());
 		return "adminPages/lessonsList";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postNewsAddPage(@ModelAttribute("lesson") Lessons lesson, @RequestParam("images") MultipartFile file ) throws IOException {
+	public String postNewsAddPage(@ModelAttribute("lesson") Lessons lesson, @RequestParam("images") MultipartFile file)
+			throws IOException {
 
 		lesson.setImage(file.getBytes());
 		String currentPrincipalName = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -64,8 +70,7 @@ public class LessonsController {
 
 		return "redirect:/admin/lessons/list";
 	}
-	
-	
+
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public String getLessonsEditPage(@PathVariable("id") Integer id, Model model) {
 
@@ -76,15 +81,21 @@ public class LessonsController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String postLessonsEditPage(@ModelAttribute("lesson") Lessons lesson, @RequestParam("images") MultipartFile file) throws IOException {
+	public String postLessonsEditPage(@ModelAttribute("lesson") Lessons lesson,
+			@RequestParam("images") MultipartFile file) throws IOException {
 
-		if(file.getBytes().length>0) {
+		if (file.getBytes().length > 0) {
 			lesson.setImage(file.getBytes());
 		}
-		
+
 		lessonsRepository.save(lesson);
 
 		return "redirect:/admin/lessons/list";
+	}
+
+	@ModelAttribute("categories")
+	public Iterable<Categories> getLessonList() {
+		return categoriesRepository.findAll();
 	}
 
 }

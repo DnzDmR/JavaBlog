@@ -23,7 +23,15 @@
 	<form th:action="@{/admin/lessons/add}" method="post" th:object="${lesson}" enctype="multipart/form-data" >
 		 <input type="text" th:field="${lesson.title}" class="form-control mt-3 mb-3 " placeholder="News Title">
 		 <input type="text" th:field="${lesson.description}" class="form-control mt-3 mb-3 " placeholder="Description">
-		 <input type="file" name="images" class=" mb-2 btn btn-light" required="required" accept="image/x-png,image/gif,image/jpeg"> 
+		 
+		 <select class="form-control mt-3 mb-3" th:field="${lesson.category}" required="required">
+		 	<option value="">Kategori Seçiniz</option>
+		 	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+		 </select>
+		 
+		 <input type="file" name="images" class="form-control mb-2 pb-5" required="required" accept="image/x-png,image/gif,image/jpeg">
+		 
+		  
 		 <textarea th:field="${lesson.content}"></textarea>
 		 <input  type="submit" value="Save" class="btn btn-danger  mt-3 mb-3">
 		 <input  type="reset" value="Clear" class="btn btn-warning  mt-3 mb-3 ">
