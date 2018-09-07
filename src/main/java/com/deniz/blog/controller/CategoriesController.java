@@ -27,11 +27,11 @@ public class CategoriesController {
 		return "adminPages/categoriesAdd";
 	}
 	
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String getCategoriesEditPage(Model model) {
 
  		model.addAttribute("categories", categoriesRepository.findAll());
-		return "adminPages/categoriesEdit";
+		return "adminPages/categoriesList";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
