@@ -30,7 +30,7 @@
 							 	<div class="text-center mt-2" sec:authorize="isAuthenticated()">
 									<form  th:action="${#httpServletRequest.getContextPath()+'/logout'}" method="post">
 										<input type="hidden" th:value="${_csrf.token}"	th:name="${_csrf.parameterName}" />
-										<input type="submit" class="special" value="Logout" />
+										<input type="submit" class="special" th:value="#{general.label.logout}" />
 									</form>
 								</div>
  																
@@ -41,37 +41,37 @@
 										<h2>Menu</h2>
 									</header>
 									<ul>
-										<li><a th:href="@{/admin/home}" th:text="#{genaral.label.homePage}"></a></li>
- 										<li><a th:href="@{/admin/about}" th:text="Hakkımda"></a></li>
+										<li><a th:href="@{/admin/home}" th:text="#{general.label.homePage}"></a></li>
+ 										<li><a th:href="@{/admin/about}" th:text="#{general.label.aboutMe}"></a></li>
  										<li>
-											<span class="opener" th:text="Users"></span>
+											<span class="opener" th:text="#{general.label.users}"></span>
 											<ul>
-												<li><a th:href="@{/admin/users/add}">Add</a></li>
-												<li><a th:href="@{/admin/users/list}">List</a></li>
+												<li><a th:href="@{/admin/users/add}" th:text="#{general.label.add}"></a></li>
+												<li><a th:href="@{/admin/users/list}" th:text="#{general.label.list}"></a></li>
 											</ul>
 										</li>
 										<li>
-											<span class="opener" th:text="News"></span>
+											<span class="opener" th:text="#{general.label.news}"></span>
 											<ul>
-												<li><a th:href="@{/admin/news/add}">Add</a></li>
-												<li><a th:href="@{/admin/news/list}">List</a></li>
+												<li><a th:href="@{/admin/news/add}" th:text="#{general.label.add}"></a></li>
+												<li><a th:href="@{/admin/news/list}" th:text="#{general.label.list}"></a></li>
 											</ul>
 										</li>
 										<li>
-											<span class="opener" th:text="Lessons"></span>
+											<span class="opener" th:text="#{general.label.lessons}"></span>
 											<ul>
- 												<li><a th:href="@{/admin/lessons/add}">Add</a></li>
-												<li><a th:href="@{/admin/lessons/list}">List</a></li>
+ 												<li><a th:href="@{/admin/lessons/add}" th:text="#{general.label.add}"></a></li>
+												<li><a th:href="@{/admin/lessons/list}" th:text="#{general.label.list}"></a></li>
 											</ul>
 										</li>
 										<li>
-											<span class="opener" th:text="Categories"></span>
+											<span class="opener" th:text="#{general.label.categories}"></span>
 											<ul>
- 												<li><a th:href="@{/admin/categories/add}">Add</a></li>
-												<li><a th:href="@{/admin/categories/edit}">Edit</a></li>
+ 												<li><a th:href="@{/admin/categories/add}" th:text="#{general.label.add}"></a></li>
+												<li><a th:href="@{/admin/categories/edit}" th:text="#{general.label.edit}"></a></li>
 											</ul>
 										</li>
-										<li><a th:href="@{/admin/contacts/list}" th:text="Messages"></a></li>
+										<li><a th:href="@{/admin/contacts/list}" th:text="#{general.label.inbox}"></a></li>
 					 
 									</ul>
 								</nav>

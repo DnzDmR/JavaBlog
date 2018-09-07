@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	xmlns:th="http://www.thymeleaf.org">
-	<title>News Add</title>
+	<title th:text="#{general.label.aboutMe}"></title>
 <head>
 	
 	<!-- Include external CSS. -->
@@ -24,9 +24,9 @@
 		 <textarea th:field="${about.content}"></textarea>
 		 <input type="hidden" th:field="${about.id}">
 		 
-		 <input  type="submit" value="Save" class="btn btn-danger  mt-3 mb-3">
-		 <input  type="reset" value="Clear" class="btn btn-warning  mt-3 mb-3 ">
-		 <a  th:href="@{/admin/home}" class="pull-right btn btn-success mt-3 mb-3"> Back</a> 
+		 <input  type="submit" th:value="#{general.label.save}" class="btn btn-danger  mt-3 mb-3">
+		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  mt-3 mb-3 ">
+		 <a  th:href="@{/admin/home}" class="pull-right btn btn-success mt-3 mb-3" th:text="#{general.label.back}"></a> 
 	 </form>
 	</div>
 	

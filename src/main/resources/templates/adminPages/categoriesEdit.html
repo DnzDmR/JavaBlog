@@ -4,7 +4,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{adminLayout/layout}">
-<th:block layout:fragment="title">Add Lesson</th:block>
+<th:block layout:fragment="title">Category List</th:block>
 <th:block layout:fragment="content">
 
  
@@ -12,8 +12,8 @@
  <table class="mt-2">
 	<thead>
 		<tr>
-			<th>Lesson Name</th>
-			<th>Action</th>
+			<th th:text="#{general.label.categoryName}"></th>
+			<th th:text="#{general.label.action}"></th>
 		</tr>	
 	</thead>
 	<tbody>

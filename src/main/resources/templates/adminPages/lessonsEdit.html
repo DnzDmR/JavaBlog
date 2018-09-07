@@ -21,8 +21,8 @@
 	<div class="container">
 	
 	<form th:action="@{'/admin/lessons/edit/'+ ${lesson.id}}" method="post" th:object="${lesson}" enctype="multipart/form-data">
-		 <input type="text" th:field="${lesson.title}" class="form-control mt-3 mb-3 " placeholder="News Title">
-		 <input type="text" th:field="${lesson.description}" class="form-control mt-3 mb-3 " placeholder="Description">
+		 <input type="text" th:field="${lesson.title}" class="form-control mt-3 mb-3 " th:placeholder="#{general.label.title}">
+		 <input type="text" th:field="${lesson.description}" class="form-control mt-3 mb-3 " th:placeholder="#{general.label.description}">
 		 
 		 <input type="hidden" th:field="${lesson.date}">
 		 <input type="hidden" th:field="${lesson.author}">
@@ -30,15 +30,15 @@
 		 <input type="hidden" th:field="${lesson.image}">
 		 
 		 <select class="form-control mt-3 mb-3" th:field="${lesson.category}" required="required">
-		 	<option value="">Kategori Seçiniz</option>
+		 	<option value="" th:text="#{general.label.selectCategory}"></option>
 		 	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
 		 </select>
 		 
 		 <input type="file" name="images" class="form-control mb-2 pb-5"  accept="image/x-png,image/gif,image/jpeg"> 
 		 <textarea th:field="${lesson.content}"></textarea>
-		 <input  type="submit" value="Save" class="btn btn-danger  mt-3 mb-3">
-		 <input  type="reset" value="Clear" class="btn btn-warning  mt-3 mb-3 ">
-		 <a  th:href="@{/admin/lessons/list}" class="pull-right btn btn-success mt-3 mb-3"> Back</a> 
+		 <input  type="submit" th:value="#{general.label.save}" class="btn btn-danger  mt-3 mb-3">
+		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  mt-3 mb-3 ">
+		 <a  th:href="@{/admin/lessons/list}" class="pull-right btn btn-success mt-3 mb-3" th:text="#{general.label.back}"></a> 
 	 </form>
 	</div>
 	

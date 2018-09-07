@@ -15,7 +15,7 @@
 			<h3 th:text="${news.title}"></h3>
 			<p th:text="${news.description}"></p>
 			<ul class="actions">
-				<li><a th:href="@{'/news/'+${news.id}}" class="button">More</a></li>
+				<li><a th:href="@{'/news/'+${news.id}}" class="button" th:text="#{general.label.more}"></a></li>
 			</ul>
 		</article>
 	</div>
