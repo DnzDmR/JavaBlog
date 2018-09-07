@@ -28,7 +28,7 @@ public class CategoriesController {
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String getCategoriesEditPage(Model model) {
+	public String getCategoriesListPage(Model model) {
 
  		model.addAttribute("categories", categoriesRepository.findAll());
 		return "adminPages/categoriesList";
@@ -51,7 +51,27 @@ public class CategoriesController {
 
 		categoriesRepository.deleteById(id);
 
-		return "redirect:/admin/categories/edit";
+		return "redirect:/admin/categories/list";
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public String getCategoriesEditPage(Model model,@PathVariable("id") Integer id) {
+
+ 		model.addAttribute("category", categoriesRepository.findById(id));
+		return "adminPages/categoriesEdit";
+	}
+	
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String postCategoriesEditPage(@ModelAttribute("category") Categories category, RedirectAttributes redirectAttributes) {
+
+		String url = category.getCategoryName().toLowerCase().replace(" ", "");
+		category.setCategoryUrl(url);
+		categoriesRepository.save(category);
+
+		redirectAttributes.addFlashAttribute("message", "Başarı ile güncellendi");
+
+		return "redirect:/admin/categories/edit/"+category.getId();
 	}
 
 }

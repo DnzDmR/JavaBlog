@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{adminLayout/layout}">
+<th:block layout:fragment="title">Add Lesson</th:block>
+<th:block layout:fragment="content">
+
+ 
+<div class="row">
+	<form method="post" th:object="${category}" th:action="@{/admin/categories/edit}" >
+		<input type="text" th:field="${category.categoryName}" class="form-control mt-2" th:placeholder="#{general.label.categoryName}" required="required">
+		<input type="hidden" th:field="${category.id}">
+		<input type="submit" class="form-control mt-2 special" th:value="#{general.label.save}">
+	</form>
+	<div th:if="${message}" th:text="${message}" class="alert alert-success col-md-12"></div>
+</div>
+ 
+ 
+ </th:block>
+</html>
