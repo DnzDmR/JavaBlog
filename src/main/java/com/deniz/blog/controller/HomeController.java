@@ -47,6 +47,10 @@ public class HomeController {
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
 
+		
+		model.addAttribute("lastNews", newsRepository.findFirstByOrderByIdDesc().get());
+		model.addAttribute("categories", categoriesRepository.findAll());
+		model.addAttribute("news", newsRepository.findFirst6ByOrderByIdDesc());
 		return "blogPages/home";
 	}
 

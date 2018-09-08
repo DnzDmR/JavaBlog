@@ -19,6 +19,8 @@ public class Categories {
 	@Column(unique = true)
 	private String categoryUrl;
 
+	private String description;
+
 	public Integer getId() {
 		return id;
 	}
@@ -41,6 +43,14 @@ public class Categories {
 
 	public void setCategoryUrl(String categoryUrl) {
 		this.categoryUrl = categoryUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

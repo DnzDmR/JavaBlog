@@ -14,4 +14,5 @@ public interface CategoriesRepository extends CrudRepository<Categories, Integer
 
 	@Query("SELECT c FROM Categories c WHERE c.categoryUrl =:category")
 	List<Categories> getCategoryByCategoryName(@Param("category") String category);
+		
 }

@@ -9,8 +9,9 @@
 
  
 <div class="row">
-	<form method="post" th:object="${category}" th:action="@{/admin/categories/add}" >
+	<form method="post" th:object="${category}" th:action="@{/admin/categories/add}" class="col-md-6" >
 		<input type="text" th:field="${category.categoryName}" class="form-control mt-2" th:placeholder="#{general.label.categoryName}" required="required">
+		<textarea th:field="${category.description}" class="form-control mt-2" th:placeholder="#{general.label.description}" required="required"> </textarea>
 		<input type="submit" class="form-control mt-2 special" th:value="#{general.label.save}">
 	</form>
 	<div th:if="${message}" th:text="${message}" class="alert alert-success col-md-12"></div>

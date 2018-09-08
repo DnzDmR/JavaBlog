@@ -7,6 +7,52 @@
 <th:block layout:fragment="title" th:text="#{general.label.homePage}"></th:block>
 <th:block layout:fragment="content">
 
+<section id="banner">
+	<div class="content">
+		<header>
+			<h1 th:text="${lastNews.title}"></h1>
+			<p th:text="${lastNews.createDate}"></p>
+		</header>
+		<p th:text="${lastNews.description}"></p>
+		<ul class="actions">
+			<li><a th:href="@{'/news/'+${lastNews.id}}" class="button big" th:text="#{general.label.more}"></a></li>
+		</ul> 
+	</div>
+	<span class="image object">
+		<img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lastNews.image)}}" alt="" />
+	</span>
+</section>
+
+<section>
+	<header class="major">
+		<h2 th:text="#{general.label.lessons}"></h2>
+	</header>
+	<div class="features">
+		<article th:each="category : ${categories}">
+			<span class="icon fa-pencil"></span>
+			<div class="content">
+				<h3 th:text="${category.categoryName}"></h3>
+				<p th:text="${category.description}"></p>
+			</div>
+		</article>
+	</div>
+</section>
+
+<section>
+	<header class="major">
+		<h2 th:text="#{general.label.news}"></h2>
+	</header>
+	<div class="posts">
+		<article th:each="news : ${news}">
+			<a th:href="@{'/news/'+${news.id}}" class="image"> <img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(news.image)}}"/></a>
+			<h3 th:text="${news.title}"></h3>
+			<p th:text="${news.description}"></p>
+			<ul class="actions">
+				<li><a th:href="@{'/news/'+${news.id}}" class="button" th:text="#{general.label.more}"></a></li>
+			</ul>
+		</article>
+	</div>
+</section>
  
 
 </th:block>
