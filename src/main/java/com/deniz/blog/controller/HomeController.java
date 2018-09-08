@@ -111,7 +111,7 @@ public class HomeController {
 	@RequestMapping(value = { "/news/pages/{id}", "/news" }, method = RequestMethod.GET)
 	public String getNewsPageNumber(Model model, @PathVariable(required = false, value = "id") Integer id) {
 
-		List<News> news = (List<News>) newsRepository.findAll();
+		List<News> news = (List<News>) newsRepository.findAllByOrderByIdDesc();
 
 		List<News> tempList = new ArrayList<News>();
 
@@ -151,7 +151,7 @@ public class HomeController {
 
 		Categories a = categoriesRepository.getCategoryByCategoryName(lesson).get(0);
 
-		List<Lessons> news = lessonRepository.getLessonsByCategory(a);
+		List<Lessons> news = lessonRepository.findAllByCategoryOrderByIdDesc(a);
 
 		List<Lessons> tempList = new ArrayList<Lessons>();
 

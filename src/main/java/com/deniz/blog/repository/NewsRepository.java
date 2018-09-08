@@ -11,6 +11,8 @@ import com.deniz.blog.entites.News;
 @Repository
 public interface NewsRepository extends CrudRepository<News, Integer> {
 
+	List<News> findAllByOrderByIdDesc();
+	
 	Optional<News> findFirstByOrderByIdDesc();
 	
 	List<News> findFirst6ByOrderByIdDesc();
