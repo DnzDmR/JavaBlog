@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.deniz.blog.entites.About;
 import com.deniz.blog.entites.Categories;
 import com.deniz.blog.entites.Contacts;
+import com.deniz.blog.entites.Lessons;
 import com.deniz.blog.entites.News;
 import com.deniz.blog.repository.AboutRepository;
 import com.deniz.blog.repository.CategoriesRepository;
@@ -93,16 +94,6 @@ public class HomeController {
 		return categoriesRepository.findAll();
 	}
 
-	@RequestMapping(value = "/lessons/{lesson}", method = RequestMethod.GET)
-	public String getLessonContentPage(@PathVariable("lesson") String lesson, Model model) {
-
-		Categories a = categoriesRepository.getCategoryByCategoryName(lesson).get(0);
-
-		model.addAttribute("lessons", lessonRepository.getLessonsByCategory(a));
-
-		return "blogPages/lessons";
-	}
-
 	@RequestMapping(value = "/lessons/{lesson}/{id}", method = RequestMethod.GET)
 	public String getLessonContentPage(@PathVariable("lesson") String lesson, @PathVariable("id") Integer id,
 			Model model) {
@@ -148,5 +139,46 @@ public class HomeController {
 		model.addAttribute("id", id);
 
 		return "blogPages/news";
+	}
+
+	@RequestMapping(value = { "/lessons/{lessons}/pages/{id}", "/lessons/{lessons}" }, method = RequestMethod.GET)
+	public String getLessonsPageNumber(Model model, @PathVariable("lessons") String lesson,
+			@PathVariable(required = false, value = "id") Integer id) {
+
+		Categories a = categoriesRepository.getCategoryByCategoryName(lesson).get(0);
+
+		List<Lessons> news = lessonRepository.getLessonsByCategory(a);
+
+		List<Lessons> tempList = new ArrayList<Lessons>();
+
+		if (id == null) {
+			id = 1;
+		}
+		int pageLimit = 10;
+
+		double totalNumber = news.size();
+
+		double temp = Math.ceil(totalNumber / pageLimit);
+		Integer totalPageCount = Integer.parseInt(Double.toString(temp).replace(".0", ""));
+
+		if (totalPageCount >= id) {
+
+			for (int startValue = (id - 1) * pageLimit; startValue < pageLimit * id; startValue++) {
+
+				if (news.size() < startValue + 1) {
+					break;
+				}
+				tempList.add(news.get(startValue));
+			}
+		}
+		if (tempList.size() > 0) {
+			model.addAttribute("lessons", tempList);
+		}
+
+		model.addAttribute("totalPage", totalPageCount);
+		model.addAttribute("id", id);
+		model.addAttribute("lessonUrl", lesson);
+
+		return "blogPages/lessons";
 	}
 }
