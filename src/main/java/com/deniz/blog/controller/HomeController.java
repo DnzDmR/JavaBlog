@@ -1,7 +1,9 @@
 package com.deniz.blog.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.deniz.blog.entites.About;
 import com.deniz.blog.entites.Categories;
 import com.deniz.blog.entites.Contacts;
+import com.deniz.blog.entites.News;
 import com.deniz.blog.repository.AboutRepository;
 import com.deniz.blog.repository.CategoriesRepository;
 import com.deniz.blog.repository.ContactsRepository;
@@ -33,13 +36,12 @@ public class HomeController {
 
 	@Autowired
 	AboutRepository aboutRepository;
-	
+
 	@Autowired
 	CategoriesRepository categoriesRepository;
-	
+
 	@Autowired
 	LessonsRepository lessonRepository;
-
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
@@ -66,14 +68,6 @@ public class HomeController {
 		return "blogPages/about";
 	}
 
-	@RequestMapping(value = "/news", method = RequestMethod.GET)
-	public String getNewsPage(Model model) {
-
-		model.addAttribute("news", newsRepository.findAll());
-
-		return "blogPages/news";
-	}
-
 	@RequestMapping(value = "/news/{id}", method = RequestMethod.GET)
 	public String getNewsPage(Model model, @PathVariable Integer id) {
 
@@ -93,31 +87,66 @@ public class HomeController {
 
 		return "redirect:/contact";
 	}
-	
+
 	@ModelAttribute("categories")
-	public Iterable<Categories> getLessonList(){
+	public Iterable<Categories> getLessonList() {
 		return categoriesRepository.findAll();
 	}
-	
+
 	@RequestMapping(value = "/lessons/{lesson}", method = RequestMethod.GET)
-	public String getLessonContentPage(@PathVariable("lesson") String lesson , Model model) {
+	public String getLessonContentPage(@PathVariable("lesson") String lesson, Model model) {
 
 		Categories a = categoriesRepository.getCategoryByCategoryName(lesson).get(0);
- 
+
 		model.addAttribute("lessons", lessonRepository.getLessonsByCategory(a));
-		
-		
+
 		return "blogPages/lessons";
 	}
-	
-	@RequestMapping(value = "/lessons/{lesson}/{id}", method = RequestMethod.GET)
-	public String getLessonContentPage(@PathVariable("lesson") String lesson ,@PathVariable("id") Integer id, Model model) {
 
-		System.out.println("##"+lessonRepository.findById(id).get().getTitle());
+	@RequestMapping(value = "/lessons/{lesson}/{id}", method = RequestMethod.GET)
+	public String getLessonContentPage(@PathVariable("lesson") String lesson, @PathVariable("id") Integer id,
+			Model model) {
+
+		System.out.println("##" + lessonRepository.findById(id).get().getTitle());
 		model.addAttribute("lesson", lessonRepository.findById(id).get());
-		
-		
+
 		return "blogPages/lessonsContent";
 	}
 
+	@RequestMapping(value = { "/news/pages/{id}", "/news" }, method = RequestMethod.GET)
+	public String getNewsPageNumber(Model model, @PathVariable(required = false, value = "id") Integer id) {
+
+		List<News> news = (List<News>) newsRepository.findAll();
+
+		List<News> tempList = new ArrayList<News>();
+
+		if (id == null) {
+			id = 1;
+		}
+		int pageLimit = 10;
+
+		double totalNumber = news.size();
+
+		double temp = Math.ceil(totalNumber / pageLimit);
+		Integer totalPageCount = Integer.parseInt(Double.toString(temp).replace(".0", ""));
+
+		if (totalPageCount >= id) {
+
+			for (int startValue = (id - 1) * pageLimit; startValue < pageLimit * id; startValue++) {
+
+				if (news.size() < startValue + 1) {
+					break;
+				}
+				tempList.add(news.get(startValue));
+			}
+		}
+		if (tempList.size() > 0) {
+			model.addAttribute("news", tempList);
+		}
+
+		model.addAttribute("totalPage", totalPageCount);
+		model.addAttribute("id", id);
+
+		return "blogPages/news";
+	}
 }

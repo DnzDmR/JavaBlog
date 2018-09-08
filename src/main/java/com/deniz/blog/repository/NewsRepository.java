@@ -8,4 +8,5 @@ import com.deniz.blog.entites.News;
 @Repository
 public interface NewsRepository extends CrudRepository<News, Integer>{
 
+	
 }

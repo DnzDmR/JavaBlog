@@ -20,6 +20,14 @@
 		</article>
 	</div>
 </section>
+<ul class="pagination d-flex justify-content-center mt-4" th:if="${news!= null and totalPage>1}">
+	<li th:each="i : ${#numbers.sequence( 1, totalPage/1)}">
+		<a th:href="@{'/news/pages/'+${i-1}}" class="page" th:if="${i == id  and i != 1}" th:text="${i-1}"></a>
+		<a th:href="@{'/news/pages/'+${i}}" class="page active" th:if="${i == id}" th:text="${i}"></a>
+		<a th:href="@{'/news/pages/'+${i+1}}" class="page" th:if="${i == id and i+1 <= totalPage}" th:text="${i+1}"></a>
+		<a th:href="@{'/news/pages/'+${i+2}}" class="page" th:if="${i == id and i+2 <= totalPage}" th:text="${i+2}"></a>
+	</li>
+</ul>
 
 </th:block>
 </html>
