@@ -18,12 +18,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	DataSource dataSouce;
 
 	@Autowired
+
 	PasswordEncoder myPasswordEncoder;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
+
 		String username = "deniz";
+
 		String password = myPasswordEncoder.encode("deniz");
 
 		auth.jdbcAuthentication().dataSource(dataSouce).passwordEncoder(getPasswordEncoder());
@@ -33,12 +35,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/admin/login", "/css/**", "/images/**", "/js/**", "/sass/**", "/fonts/**").permitAll();
+		http.authorizeRequests().antMatchers("/admin/login", "/css/**", "/images/**", "/js/**", "/sass/**", "/fonts/**")
+				.permitAll();
 		http.authorizeRequests().antMatchers("/admin/**").authenticated();
 		http.authorizeRequests().antMatchers("/**").permitAll();
 		http.authorizeRequests().anyRequest().authenticated().and().exceptionHandling().accessDeniedPage("/403");
-		
-		http.formLogin().loginPage("/admin/login").loginProcessingUrl("/admin/login").failureUrl("/admin/login?loginFailed=true");
+
+		http.formLogin().loginPage("/admin/login").loginProcessingUrl("/admin/login")
+				.failureUrl("/admin/login?loginFailed=true");
 		http.formLogin().defaultSuccessUrl("/admin/");
 	}
 
