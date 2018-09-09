@@ -18,13 +18,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	DataSource dataSouce;
 
 	@Autowired
-	PasswordEncoder passwordEncoder;
+	PasswordEncoder passwordEncoders;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
 		String username = "deniz";
-		String password = passwordEncoder.encode("deniz");
+		String password = passwordEncoders.encode("deniz");
 
 		auth.jdbcAuthentication().dataSource(dataSouce).passwordEncoder(getPasswordEncoder());
 		auth.inMemoryAuthentication().withUser(username).password(password).roles("ADMIN");
