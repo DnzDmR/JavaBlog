@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,8 +48,11 @@ public class HomeController {
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
 
-		
-		model.addAttribute("lastNews", newsRepository.findFirstByOrderByIdDesc().get());
+		Optional<News> lastNews = newsRepository.findFirstByOrderByIdDesc();
+		if (lastNews.isPresent()) {
+			model.addAttribute("lastNews", lastNews.get());
+		}
+
 		model.addAttribute("categories", categoriesRepository.findAll());
 		model.addAttribute("news", newsRepository.findFirst6ByOrderByIdDesc());
 		return "blogPages/home";

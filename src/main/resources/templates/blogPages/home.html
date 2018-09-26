@@ -7,7 +7,7 @@
 <th:block layout:fragment="title" th:text="#{general.label.homePage}"></th:block>
 <th:block layout:fragment="content">
 
-<section id="banner">
+<section id="banner" th:if="${lastNews != null}">
 	<div class="content">
 		<header>
 			<h1 th:text="${lastNews.title}"></h1>
