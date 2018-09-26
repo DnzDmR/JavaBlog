@@ -10,6 +10,9 @@
 		<header class="main">
 			<h1 th:text="${news.title}">Generic</h1>
 		</header>
+		<span th:text="${news.author.firstName +' '+news.author.lastName + ' — '}" style="font-weight: bold;"></span>
+		<span th:text="${#dates.format(news.createDate, 'dd MMMM yyyy')}"></span>
+		<br><br>
 		<p th:text="${news.description}"></p>
 		<span class="image main"><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(news.image)}}"/></span>
 		
