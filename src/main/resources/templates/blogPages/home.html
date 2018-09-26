@@ -31,7 +31,8 @@
 		<article th:each="category : ${categories}">
 			<span class="icon fa-pencil"></span>
 			<div class="content">
-				<h3 th:text="${category.categoryName}"></h3>
+				<a th:href="@{'/lessons/'+ ${category.categoryUrl}}" th:text="${category.categoryName}" style="border-bottom: none; font-weight: bold; font-size: 1.5em; color: black; ">
+				</a>
 				<p th:text="${category.description}"></p>
 			</div>
 		</article>
