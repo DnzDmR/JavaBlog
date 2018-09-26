@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{blogLayout/layout}">
+<th:block layout:fragment="title" th:text="#{general.label.news}"></th:block>
+<th:block layout:fragment="content">
+
+<!-- Section -->
+<section>
+	<div class="posts">
+		<article th:each="lesson : ${result}">
+			<a th:href="@{'/lessons/'+${lesson.category.categoryUrl}+'/'+${lesson.id}}" class="image"> <img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lesson.image)}}"/></a>
+			<h3 th:text="${lesson.title}"></h3>
+			<p th:text="${lesson.description}"></p>
+			<ul class="actions">
+				<li><a th:href="@{'/lessons/'+${lesson.category.categoryUrl}+'/'+${lesson.id}}" class="button" th:text="#{general.label.more}"></a></li>
+			</ul>
+		</article>
+	</div>
+</section>
+<ul class="pagination d-flex justify-content-center mt-4" th:if="${lessons!= null and totalPage>1}">
+	<li th:each="i : ${#numbers.sequence( 1, totalPage/1)}">
+		<a th:href="@{'/lessons/'+${lessonUrl}+'/pages/'+${i-1}}" class="page" th:if="${i == id  and i != 1}" th:text="${i-1}"></a>
+		<a th:href="@{'/lessons/'+${lessonUrl}+'/pages/'+${i}}" class="page active" th:if="${i == id}" th:text="${i}"></a>
+		<a th:href="@{'/lessons/'+${lessonUrl}+'/pages/'+${i+1}}" class="page" th:if="${i == id and i+1 <= totalPage}" th:text="${i+1}"></a>
+		<a th:href="@{'/lessons/'+${lessonUrl}+'/pages/'+${i+2}}" class="page" th:if="${i == id and i+2 <= totalPage}" th:text="${i+2}"></a>
+	</li>
+</ul>
+
+</th:block>
+</html>
