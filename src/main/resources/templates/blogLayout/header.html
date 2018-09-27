@@ -9,18 +9,12 @@
 
 	<div layout:fragment="header">
 		<header id="header">
-			<a href="#" class="logo"><strong>Write once, run anywhere</strong> by Sun Microsystems</a>
+			<a href="#" class="logo"><i class="fab fa-java fa-2x"></i> <strong> Write once, run anywhere . . .</strong> </a>
 			<ul class="icons">
-				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon fa-facebook"><span
-						class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon fa-snapchat-ghost"><span
-						class="label">Snapchat</span></a></li>
-				<li><a href="#" class="icon fa-instagram"><span
-						class="label">Instagram</span></a></li>
-				<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+				<li><a href="https://www.linkedin.com/in/denizcandmr" class="icon fab fa-linkedin"><span class="label">Linkedin</span></a></li>
+				<li><a href="https://github.com/DnzDmR" class="icon fab fa-github-alt"><span class="label">Github</span></a></li>
+				<li><a href="https://www.instagram.com/denizcandemiir/" class="icon fab fa-instagram"><span class="label">Instagram</span></a></li>
 				<li>
- 
 				<select id="locales" class="border-white">
 				    <option th:text="${#strings.toString(#locale)}=='en' ? 'EN' : 'TR' "></option>
 				    <option th:if="${#strings.toString(#locale)} !='tr'" value="tr" th:text="TR"></option>
