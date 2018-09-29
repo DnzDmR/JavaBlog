@@ -59,7 +59,7 @@ public class HomeController {
 	@Autowired
 	LessonsRepository lessonRepository;
 
-	private Path rootLocation = Paths.get(System.getProperty("java.io.tmpdir") + "/images/");;
+	private String baseUrl = System.getProperty("user.home") + "/images/";
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
@@ -223,7 +223,7 @@ public class HomeController {
 		String imageUrl = "";
 		try {
 
-			File a = new File(System.getProperty("java.io.tmpdir") + "/images");
+			File a = new File(baseUrl);
 			if (!a.exists()) {
 				a.mkdirs();
 			}
@@ -231,7 +231,7 @@ public class HomeController {
 			// Get the filename and build the local file path (be sure that the
 			// application have write permissions on such directory)
 			String filename = UUID.randomUUID().toString();
-			String directory = System.getProperty("java.io.tmpdir") + "/images";
+			String directory = baseUrl;
 			String filepath = Paths.get(directory, filename + ".jpg").toString();
 
 			// Save the file locally
@@ -252,7 +252,7 @@ public class HomeController {
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws IOException {
 
-		Path file = this.rootLocation.resolve(filename);
+		Path file = Paths.get(baseUrl).resolve(filename);
 		Resource resource = new UrlResource(file.toUri());
 		return ResponseEntity.ok().body(resource);
 	}
