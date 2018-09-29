@@ -122,8 +122,7 @@ public class HomeController {
 	public String getLessonContentPage(@PathVariable("lesson") String lesson, @PathVariable("id") Integer id,
 			Model model) {
 
-		System.out.println("##" + lessonRepository.findById(id).get().getTitle());
-		model.addAttribute("lesson", lessonRepository.findById(id).get());
+ 		model.addAttribute("lesson", lessonRepository.findById(id).get());
 
 		return "blogPages/lessonsContent";
 	}
@@ -195,10 +194,8 @@ public class HomeController {
 				tempList.add(news.get(startValue));
 			}
 		}
-		if (tempList.size() > 0) {
-			model.addAttribute("lessons", tempList);
-		}
-
+			
+		model.addAttribute("lessons", tempList);
 		model.addAttribute("totalPage", totalPageCount);
 		model.addAttribute("id", id);
 		model.addAttribute("lessonUrl", lesson);
