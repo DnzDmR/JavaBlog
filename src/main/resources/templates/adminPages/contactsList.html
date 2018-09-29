@@ -13,7 +13,7 @@
 			class="list-group-item list-group-item-action flex-column align-items-start  ">
 			<div class="d-flex w-100 justify-content-between mb-2">
 				<h5 class="mb-1" th:text="${contact.name +' (' +contact.email} +')'"></h5>
-				<small th:text="${contact.date}"></small>
+				<small th:text="${#dates.format(contact.date, 'dd MMMM yyyy')}"></small>
 			</div>
 			<p class="mb-2" th:text="${contact.message}"></p>
 			<a th:href="@{'/admin/contacts/delete/'+${contact.id}}" onclick="return confirm('Are you sure ?')"

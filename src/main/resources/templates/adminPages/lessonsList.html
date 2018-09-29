@@ -21,7 +21,7 @@
 			<tr th:each="lesson : ${lessons}">
 				<td th:text="${lesson.title}"></td>
 				<td th:text="${lesson.author.firstName}"></td>
-				<td th:text="${lesson.date}"></td>
+				<td th:text="${#dates.format(lesson.date, 'dd MMMM yyyy')}"></td>
  				<td>
 					<a th:href="@{'/admin/lessons/edit/'+ ${lesson.id}}" style="border:none" class="mr-1"><i class="fas fa-pencil-alt"></i></a>
 					<a th:href="@{'/admin/lessons/delete/'+ ${lesson.id}}" style="border:none" class="ml-1" onclick="return confirm('Are you sure !');"><i class="fas fa-trash"></i></a>
