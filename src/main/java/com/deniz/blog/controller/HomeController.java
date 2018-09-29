@@ -1,18 +1,32 @@
 package com.deniz.blog.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.deniz.blog.entites.About;
@@ -44,6 +58,8 @@ public class HomeController {
 
 	@Autowired
 	LessonsRepository lessonRepository;
+
+	private Path rootLocation = Paths.get(System.getProperty("java.io.tmpdir") + "/images/");;
 
 	@RequestMapping(value = { "", "/" }, method = RequestMethod.GET)
 	public String getHomePage(Model model) {
@@ -198,6 +214,47 @@ public class HomeController {
 		model.addAttribute("result", values);
 
 		return "blogPages/search";
+	}
+
+	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseEntity<String> uploadFile(@RequestParam("uploadfile") MultipartFile uploadfile) {
+
+		String imageUrl = "";
+		try {
+
+			File a = new File(System.getProperty("java.io.tmpdir") + "/images");
+			if (!a.exists()) {
+				a.mkdirs();
+			}
+
+			// Get the filename and build the local file path (be sure that the
+			// application have write permissions on such directory)
+			String filename = UUID.randomUUID().toString();
+			String directory = System.getProperty("java.io.tmpdir") + "/images";
+			String filepath = Paths.get(directory, filename + ".jpg").toString();
+
+			// Save the file locally
+			BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(filepath)));
+			stream.write(uploadfile.getBytes());
+			stream.close();
+
+			imageUrl = "http://localhost:8080/files/" + filename + ".jpg";
+
+		} catch (Exception e) {
+			return ResponseEntity.ok("Failed !");
+		}
+
+		return ResponseEntity.ok(imageUrl);
+	}
+
+	@GetMapping("/files/{filename:.+}")
+	@ResponseBody
+	public ResponseEntity<Resource> serveFile(@PathVariable String filename) throws IOException {
+
+		Path file = this.rootLocation.resolve(filename);
+		Resource resource = new UrlResource(file.toUri());
+		return ResponseEntity.ok().body(resource);
 	}
 
 }

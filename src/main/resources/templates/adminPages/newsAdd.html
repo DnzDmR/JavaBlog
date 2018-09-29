@@ -23,16 +23,25 @@
 	<form th:action="@{/admin/news/add}" method="post" th:object="${news}" enctype="multipart/form-data" >
 		 <input type="text" th:field="${news.title}" class="form-control mt-3 mb-3 " th:placeholder="#{general.label.title}">
 		 <input type="text" th:field="${news.description}" class="form-control mt-3 mb-3 " th:placeholder="#{general.label.description}">
-		 <input type="file" name="images" class=" mb-2 btn btn-light" required="required" accept="image/x-png,image/gif,image/jpeg"> 
+		 <label for="m1">Header Image</label>
+		 <input id="m1" type="file" name="images" class="form-control pb-5 mb-3" required="required" accept="image/x-png,image/gif,image/jpeg"> 
 		 <textarea th:field="${news.content}"></textarea>
 		 <input  type="submit" th:value="#{general.label.save}" class="btn btn-danger  mt-3 mb-3">
 		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  mt-3 mb-3 ">
 		 <a  th:href="@{/admin/news/list}" class="pull-right btn btn-success mt-3 mb-3" th:text="#{general.label.back}"></a> 
 	 </form>
+	 
+	<form id="upload-file-form" th:action=@{/uploadFile} method="post" enctype="multipart/form-data">
+	<label for="upload-file-input">Context Image</label>
+	   <input id="upload-file-input" type="file" class="form-control pb-5" name="uploadfile" accept="image/x-png,image/gif,image/jpeg" />
+	</form>
+	
+	<div class="alert-primary" id="imageUrl"></div>
+	 
+	 
 	</div>
 	
-	
-	
+ 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
@@ -42,7 +51,44 @@
  
     <!-- Initialize the editor. -->
     <script> $(function() { $('textarea').froalaEditor() }); </script>
+	
+	
+	<script type="text/javascript">
+	
+	// bind the on-change event
+	$(document).ready(function() {
+	  $("#upload-file-input").on("change", uploadFile);
+	});
 
+	/**
+	 * Upload the file sending it via Ajax at the Spring Boot server.
+	 */
+	function uploadFile() {
+	  $.ajax({
+	    url: "/uploadFile",
+	    type: "POST",
+	    data: new FormData($("#upload-file-form")[0]),
+	    enctype: 'multipart/form-data',
+	    processData: false,
+	    contentType: false,
+	    cache: false,
+	    success: function (data) {
+	      // Handle upload success
+	      // ...
+			
+	      	$("#imageUrl").text(data)
+
+	      
+	    },
+	    error: function () {
+	      // Handle upload error
+	      // ...
+	    }
+	  });
+	} // function uploadFile
+	
+	
+	</script>
    
 </body>
 </html>
