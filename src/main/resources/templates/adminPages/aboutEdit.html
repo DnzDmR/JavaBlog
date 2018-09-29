@@ -28,6 +28,14 @@
 		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  mt-3 mb-3 ">
 		 <a  th:href="@{/admin/home}" class="pull-right btn btn-success mt-3 mb-3" th:text="#{general.label.back}"></a> 
 	 </form>
+	 
+	 <form id="upload-file-form" th:action=@{/uploadFile} method="post" enctype="multipart/form-data">
+		<label for="upload-file-input">Context Image</label>
+	  	<input id="upload-file-input" type="file" class="form-control pb-5" name="uploadfile" accept="image/x-png,image/gif,image/jpeg" />
+	 </form>
+	
+	<div class="alert-primary" id="imageUrl"></div>
+	 
 	</div>
 	
 	
@@ -41,6 +49,7 @@
  
     <!-- Initialize the editor. -->
     <script> $(function() { $('textarea').froalaEditor() }); </script>
+	<script type="text/javascript" src="/js/imageupload.js"></script>	
 
    
 </body>
