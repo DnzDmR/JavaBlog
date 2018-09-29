@@ -4,7 +4,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{adminLayout/layout}">
-<th:block layout:fragment="title" th:text="#{general.label.users}"></th:block>
+<th:block layout:fragment="title" th:text="#{general.label.userAdd}"></th:block>
 <th:block layout:fragment="content">
 
 		<form id="login-form" class="mt-3" th:action="@{/admin/users/add}"	method="post" th:object="${user}">
