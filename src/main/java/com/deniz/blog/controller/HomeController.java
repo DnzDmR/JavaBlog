@@ -203,8 +203,8 @@ public class HomeController {
 		return "blogPages/lessons";
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String getSearchPage(@ModelAttribute("search") String search, Model model) {
+	@RequestMapping(value = "/search", method = RequestMethod.GET)
+	public String getSearchPage(@RequestParam("search") String search, Model model) {
 
 		List<Lessons> values = lessonRepository.searchLessonByValue(search);
 

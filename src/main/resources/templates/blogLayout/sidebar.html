@@ -11,10 +11,8 @@
 		 <!-- Sidebar -->
 					<div id="sidebar">
 						<div class="inner">
-						
 								<!-- Search -->
 								<section id="search" class="alt">
-				
 									<div style="width: 50%; margin: auto;">
 										<img style="border-radius: 50%;" class="card-img"
 											src="https://avatars2.githubusercontent.com/u/32747214?s=460&v=4"
@@ -24,16 +22,17 @@
 										<h3 class="text-center mt-2">DENİZCAN DEMİR</h3>
 										<p class="text-center text-uppercase" th:text="#{general.label.siteTitle}"></p>
 									</div>
-				
-									<hr />
-									<form method="post" th:action="@{/search}" class="mt-3">
-										<input type="text" name="search" id="search" th:placeholder="#{general.label.search}" required="required" />
+									<form method="get" th:action="@{/search}">
+										<input type="text" name="search" th:placeholder="#{general.label.search}" required="required" />
 									</form>
-				
+									
+
+									
 								</section>
 				
 								<!-- Menu -->
 								<nav id="menu">
+				 
 									<header class="major">
 										<h2>Menu</h2>
 									</header>
