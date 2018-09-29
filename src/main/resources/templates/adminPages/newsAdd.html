@@ -51,44 +51,8 @@
  
     <!-- Initialize the editor. -->
     <script> $(function() { $('textarea').froalaEditor() }); </script>
-	
-	
-	<script type="text/javascript">
-	
-	// bind the on-change event
-	$(document).ready(function() {
-	  $("#upload-file-input").on("change", uploadFile);
-	});
+	<script type="text/javascript" src="/js/imageupload.js"></script>	
 
-	/**
-	 * Upload the file sending it via Ajax at the Spring Boot server.
-	 */
-	function uploadFile() {
-	  $.ajax({
-	    url: "/uploadFile",
-	    type: "POST",
-	    data: new FormData($("#upload-file-form")[0]),
-	    enctype: 'multipart/form-data',
-	    processData: false,
-	    contentType: false,
-	    cache: false,
-	    success: function (data) {
-	      // Handle upload success
-	      // ...
-			
-	      	$("#imageUrl").text(data)
-
-	      
-	    },
-	    error: function () {
-	      // Handle upload error
-	      // ...
-	    }
-	  });
-	} // function uploadFile
-	
-	
-	</script>
    
 </body>
 </html>
