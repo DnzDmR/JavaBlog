@@ -4,7 +4,7 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	layout:decorate="~{blogLayout/layout}">
-<th:block layout:fragment="title">Contact</th:block>
+<th:block layout:fragment="title" th:text="'Denizcan Demir - '+ #{general.label.contact}"></th:block>
 <th:block layout:fragment="content">
 
 <form method="post" th:action="@{/contact}" class="mt-3" th:object="${contact}">
