@@ -1,6 +1,5 @@
 package com.deniz.blog.controller;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.Optional;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.deniz.blog.entites.Categories;
 import com.deniz.blog.entites.Lessons;
@@ -51,10 +48,8 @@ public class LessonsController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postNewsAddPage(@ModelAttribute("lesson") Lessons lesson, @RequestParam("images") MultipartFile file)
-			throws IOException {
+	public String postNewsAddPage(@ModelAttribute("lesson") Lessons lesson) {
 
-		lesson.setImage(file.getBytes());
 		String currentPrincipalName = SecurityContextHolder.getContext().getAuthentication().getName();
 		lesson.setAuthor(usersRepository.getUserByUsername(currentPrincipalName).get());
 		lesson.setDate(new Date(Calendar.getInstance().getTime().getTime()));
@@ -81,12 +76,7 @@ public class LessonsController {
 	}
 
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
-	public String postLessonsEditPage(@ModelAttribute("lesson") Lessons lesson,
-			@RequestParam("images") MultipartFile file) throws IOException {
-
-		if (file.getBytes().length > 0) {
-			lesson.setImage(file.getBytes());
-		}
+	public String postLessonsEditPage(@ModelAttribute("lesson") Lessons lesson) {
 
 		lessonsRepository.save(lesson);
 

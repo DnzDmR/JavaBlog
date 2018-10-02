@@ -3,12 +3,10 @@ package com.deniz.blog.entites;
 import java.sql.Date;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -36,9 +34,7 @@ public class Lessons {
 	@OneToOne
 	private Users author;
 
-	@Lob
-	@Column(nullable = false, columnDefinition = "mediumblob")
-	private byte[] image;
+	private String image;
 
 	public Integer getId() {
 		return id;
@@ -80,11 +76,11 @@ public class Lessons {
 		this.author = author;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

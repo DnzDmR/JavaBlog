@@ -18,7 +18,7 @@
 		</ul> 
 	</div>
 	<span class="image object">
-		<img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lastNews.image)}}" alt="" />
+		<img th:src="${lastNews.image}" alt="" />
 	</span>
 </section>
 
@@ -44,7 +44,7 @@
 	</header>
 	<div class="posts">
 		<article th:each="news : ${news}">
-			<a th:href="@{'/news/'+${news.id}}" class="image"> <img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(news.image)}}"/></a>
+			<a th:href="@{'/news/'+${news.id}}" class="image"> <img th:src="${news.image}"/></a>
 			<h3 th:text="${news.title}"></h3>
 			<p th:text="${news.description}"></p>
 			<ul class="actions">

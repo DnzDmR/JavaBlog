@@ -2,12 +2,10 @@ package com.deniz.blog.entites;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.Type;
@@ -29,9 +27,7 @@ public class News {
 	@OneToOne
 	private Users author;
 
-	@Lob
-	@Column(nullable = false, columnDefinition = "mediumblob")
-	byte[] image;
+	private String image;
 
 	private Date createDate;
 
@@ -83,11 +79,11 @@ public class News {
 		this.description = description;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

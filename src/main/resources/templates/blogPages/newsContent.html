@@ -16,18 +16,18 @@
 		</div>
 		
 		<p th:text="${news.description}"></p>
-		<span class="image main"><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(news.image)}}"/></span>
+		<span class="image main"><img th:src="${news.image}"/></span>
 		
 		<p id="metin"></p>
 		
 	</section>
 
-<script th:inline="javascript">
-var message = [[${news.content}]]
-
-document.getElementById("metin").innerHTML=message;
-
-</script>
+	<script th:inline="javascript">
+	var message = [[${news.content}]]
+	
+	document.getElementById("metin").innerHTML=message;
+	
+	</script>
 
 </th:block>
 </html>

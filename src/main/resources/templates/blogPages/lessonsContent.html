@@ -8,14 +8,14 @@
 <th:block layout:fragment="content">
 	<section>
 		<header class="main">
-			<h1 th:text="${lesson.title}">Generic</h1>
+			<h1 th:text="${lesson.title}"></h1>
 		</header>
 		<div style="border-bottom:solid 1px #ccc; margin-bottom: 15px;">
 			<span th:text="${lesson.author.firstName +' '+lesson.author.lastName + ' — '}" style="font-weight: bold;"></span>
 			<span th:text="${#dates.format(lesson.date, 'dd MMMM yyyy')}"></span>
 		</div>
 		<p th:text="${lesson.description}"></p>
-		<span class="image main"><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lesson.image)}}"/></span>
+		<span class="image main"><img th:src="${lesson.image}"/></span>
 		
 		<p id="metin"></p>
 		

@@ -11,7 +11,7 @@
 <section>
 	<div class="posts">
 		<article th:each="lesson : ${result}">
-			<a th:href="@{'/lessons/'+${lesson.category.categoryUrl}+'/'+${lesson.id}}" class="image"> <img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(lesson.image)}}"/></a>
+			<a th:href="@{'/lessons/'+${lesson.category.categoryUrl}+'/'+${lesson.id}}" class="image"> <img th:src="${lesson.image}"/></a>
 			<h3 th:text="${lesson.title}"></h3>
 			<p th:text="${lesson.description}"></p>
 			<ul class="actions">

@@ -18,7 +18,7 @@
 		 <input type="hidden" th:field="${lesson.date}">
 		 <input type="hidden" th:field="${lesson.author}">
 		 <input type="hidden" th:field="${lesson.id}">
-		 <input type="hidden" th:field="${lesson.image}">
+		 
 
 		 <input type="text" th:field="${lesson.title}" class="form-control form-group" th:placeholder="#{general.label.title}" style="margin-top:10px;">
 		 <input type="text" th:field="${lesson.description}" class="form-control form-group" th:placeholder="#{general.label.description}">
@@ -27,9 +27,7 @@
 		 	<option value="" th:text="#{general.label.selectCategory}"></option>
 		 	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
 		 </select>
-		 
-		 <label for="m1">Header Image</label>
-		 <input id="m1" type="file" name="images" class="form-control form-group" accept="image/x-png,image/gif,image/jpeg"> 
+		 <input type="text" class="form-control form-group" th:field="${lesson.image}"> 
 		 <textarea id="summernote" name="editordata" th:field="${lesson.content}"></textarea>
 		 <input  type="submit" th:value="#{general.label.save}" class="btn btn-danger  form-group">
 		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  form-group ">
