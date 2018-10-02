@@ -20,7 +20,7 @@
 		 	<option value="" th:text="#{general.label.selectCategory}"></option>
 		 	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
 		 </select>
-		 <input type="text" th:field="${lesson.image}" class="form-control form-group" required="required" > 
+		 <input type="text" th:field="${lesson.image}" class="form-control form-group" required="required" th:placeholder="#{general.label.mainImage}"> 
 		 <textarea id="summernote" name="editordata" th:field="${lesson.content}"></textarea>
 		 <input  type="submit" th:value="#{general.label.save}" class="btn btn-danger  form-group">
 		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  form-group ">

@@ -16,7 +16,7 @@
   	<form th:action="@{/admin/news/add}" method="post" th:object="${news}" enctype="multipart/form-data" class="form-group">
 		 <input type="text" th:field="${news.title}" class="form-control form-group" th:placeholder="#{general.label.title}" style="margin-top:10px;">
 		 <input type="text" th:field="${news.description}" class="form-control form-group" th:placeholder="#{general.label.description}">
-		 <input type="text"  class="form-control form-group" required="required" th:field="${news.image}"> 
+		 <input type="text"  class="form-control form-group" required="required" th:field="${news.image}" th:placeholder="#{general.label.mainImage}"> 
 		 <textarea id="summernote" name="editordata" th:field="${news.content}"></textarea>
 		 <input  type="submit" th:value="#{general.label.save}" class="btn btn-danger  form-group">
 		 <input  type="reset" th:value="#{general.label.clear}" class="btn btn-warning  form-group ">
