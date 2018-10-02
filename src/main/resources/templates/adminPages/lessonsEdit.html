@@ -23,7 +23,7 @@
 		 <input type="text" th:field="${lesson.title}" class="form-control form-group" th:placeholder="#{general.label.title}" style="margin-top:10px;">
 		 <input type="text" th:field="${lesson.description}" class="form-control form-group" th:placeholder="#{general.label.description}">
 		 
-		 <select class="form-control mt-3 mb-3" th:field="${lesson.category}" required="required">
+		 <select class="form-control mt-3 mb-3 form-group" th:field="${lesson.category}" required="required">
 		 	<option value="" th:text="#{general.label.selectCategory}"></option>
 		 	<option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.categoryName}"></option>
 		 </select>
