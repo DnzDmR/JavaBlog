@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{blogLayout/layout}">
+<th:block layout:fragment="title" th:text="#{general.label.error404}"></th:block>
+<th:block layout:fragment="content">
+
+	<section>
+		<header class="main">
+			<h1 align="center">404</h1>
+			<h1 align="center" th:text="#{general.label.error404}"></h1>
+		</header>
+	</section>
+
+</th:block>
+</html>
