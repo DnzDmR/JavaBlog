@@ -10,13 +10,13 @@
 <form method="post" th:action="@{/contact}" class="mt-3" th:object="${contact}">
 	<div class="row uniform">
 		<div class="col-md-7 col-xs-12">
-			<input type="text" th:field="${contact.name}"   th:placeholder="#{general.label.name}" />
+			<input type="text" th:field="${contact.name}"   th:placeholder="#{general.label.name}" required="required" />
 		</div>
 		<div class="col-md-7 col-xs-12">
-			<input type="email" th:field="${contact.email}"   th:placeholder="#{general.label.email}" />
+			<input type="email" th:field="${contact.email}"   th:placeholder="#{general.label.email}" required="required" />
 		</div>
 		<div class="col-md-12">
-			<textarea name="demo-message" th:field="${contact.message}" th:placeholder="#{general.label.enterYourMessage}" rows="6"></textarea>
+			<textarea name="demo-message" th:field="${contact.message}" th:placeholder="#{general.label.enterYourMessage}" rows="6" required="required"></textarea>
 		</div>
 		<div class="col-md-12">
 			<ul class="actions">
