@@ -118,9 +118,9 @@ public class HomeController {
 		if(reCaptchaResponse.isSuccess()) {
 			contact.setDate(new Date(Calendar.getInstance().getTime().getTime()));
 			contactRepository.save(contact);
-			redirectAttributes.addFlashAttribute("message","Mesajınız başarıyla gönderilmiştir. Mail aracılığıyla dönüş yapılacaktır.");
+			redirectAttributes.addFlashAttribute("message","general.label.contactMessageSuccess");
 		}else {
-			redirectAttributes.addFlashAttribute("message","Hata");	
+			redirectAttributes.addFlashAttribute("message","general.label.contactMessageFailed");	
 		}
 		
 
