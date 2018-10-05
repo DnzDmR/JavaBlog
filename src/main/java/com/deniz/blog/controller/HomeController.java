@@ -16,6 +16,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,9 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.deniz.blog.config.ReCaptchaResponse;
 import com.deniz.blog.entites.About;
 import com.deniz.blog.entites.Categories;
 import com.deniz.blog.entites.Contacts;
@@ -58,6 +61,9 @@ public class HomeController {
 
 	@Autowired
 	LessonsRepository lessonRepository;
+	
+	@Autowired
+	RestTemplate restTemplate;
 
 	private String baseUrl = System.getProperty("user.home") + "/images/";
 
@@ -102,13 +108,22 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/contact", method = RequestMethod.POST)
-	public String postContactPage(@ModelAttribute("contact") Contacts contact, RedirectAttributes redirectAttributes) {
+	public String postContactPage(@ModelAttribute("contact") Contacts contact,@RequestParam("g-recaptcha-response") String captchaResponse, RedirectAttributes redirectAttributes) {
 
-		contact.setDate(new Date(Calendar.getInstance().getTime().getTime()));
-		contactRepository.save(contact);
+		//for google reCaptcha
+		String url ="https://www.google.com/recaptcha/api/siteverify";
+		String params ="?secret=6LcwgXMUAAAAAKdyob_WAE5Jl7rMXJczMMxMQlKQ&response="+captchaResponse;
+		ReCaptchaResponse reCaptchaResponse = restTemplate.exchange(url+params,HttpMethod.POST,null,ReCaptchaResponse.class).getBody();
+		
+		if(reCaptchaResponse.isSuccess()) {
+			contact.setDate(new Date(Calendar.getInstance().getTime().getTime()));
+			contactRepository.save(contact);
+			redirectAttributes.addFlashAttribute("message","Mesajınız başarıyla gönderilmiştir. Mail aracılığıyla dönüş yapılacaktır.");
+		}else {
+			redirectAttributes.addFlashAttribute("message","Hata");	
+		}
+		
 
-		redirectAttributes.addFlashAttribute("message",
-				"Mesajınız başarıyla gönderilmiştir. Mail aracılığıyla dönüş yapılacaktır.");
 
 		return "redirect:/contact";
 	}

@@ -6,6 +6,7 @@
 	layout:decorate="~{blogLayout/layout}">
 <th:block layout:fragment="title" th:text="'Denizcan Demir - '+ #{general.label.contact}"></th:block>
 <th:block layout:fragment="content">
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 <form method="post" th:action="@{/contact}" class="mt-3" th:object="${contact}">
 	<div class="row uniform">
@@ -17,6 +18,9 @@
 		</div>
 		<div class="col-md-12">
 			<textarea name="demo-message" th:field="${contact.message}" th:placeholder="#{general.label.enterYourMessage}" rows="6" required="required"></textarea>
+		</div>
+		<div class="col-md-12">
+			<div class="g-recaptcha" data-sitekey="6LcwgXMUAAAAADnNq9D6p4T-FWCpdRvrGbtBI1pu"></div>
 		</div>
 		<div class="col-md-12">
 			<ul class="actions">
